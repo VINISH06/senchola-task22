@@ -43,13 +43,8 @@ img {
 .group.success input {
   border-color: green;
 }
-.Registered.success {
-  color: green;
-}
-.Registered.failed {
-  color: red;
-}
-.group.error1 {
+
+.group .error1 {
   color: red;
   font-size: 16px;
   margin-top: 2px;

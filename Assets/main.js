@@ -71,7 +71,7 @@ function signup() {
   let Password1 = Password.value;
   const msg = document.querySelector(".Registered");
   if (Name1 && Email1 && Password1) {
-    const user = { Name1, Email1, Password1 };
+    const user = { Name: Name1, Email: Email1, Password: Password1 };
     Users.push(user);
 
     msg.innerText = "Signup successful. You can now login.";
@@ -82,21 +82,19 @@ function signup() {
   }
 }
 
-////////////////////////////////////////
+/////////////////////////////////////////////////////
 function login() {
   const username = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
 
-  const user = Users.find(
+  const user1 = Users.find(
     (u) => u.Email === username && u.Password === password
   );
 
-  if (user) {
-    // Redirect to a custom page
+  if (user1) {
     window.location.href = "To-do.html";
   } else {
     document.querySelector(".loggin").innerText = "Login Failed";
     document.querySelector(".loggin").style.color = "red";
   }
 }
-console.log(u.email);

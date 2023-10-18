@@ -30,7 +30,7 @@
                 <!-- login -->
                 <div class="tab-pane active" id="login">
                     <h3>Login</h3>
-                    <form id="login-form">
+                    <form id="login-form" onsubmit="login();return false;">
                         <div class="group">
                             <label for="loginEmail">Email</label>
                             <input type="text" class="form-control" id="loginEmail" placeholder="Enter your email">
@@ -44,8 +44,7 @@
                                 placeholder="Enter your password">
                             <div class="error"></div>
                         </div>
-                        <button type="submit" class="btn btn-success mt-4" onclick="login()"
-                            href="./To-do.html">Login</button>
+                        <button type="submit" class="btn btn-success mt-4">Login</button>
                         <div class="loggin"></div>
                     </form>
                 </div>

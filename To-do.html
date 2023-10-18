@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App with CRUD Operations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">To-Do List</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text" id="taskInput" class="form-control" placeholder="Add a new task">
+                    <div class="input-group-append">
+                        <button id="addTask" class="btn btn-primary" type="button">Add</button>
+                    </div>
+                </div>
+                <ul class="list-group" id="taskList">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const taskInput = document.getElementById("taskInput");
+            const addTaskButton = document.getElementById("addTask");
+            const taskList = document.getElementById("taskList");
+
+            function createTask(taskText) {
+                const taskItem = document.createElement("li");
+                taskItem.className = "list-group-item";
+                taskItem.textContent = taskText;
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.className = "btn btn-danger float-right ml-2";
+                deleteButton.addEventListener("click", function() {
+                    taskItem.remove();
+                });
+
+                const editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+                editButton.className = "btn btn-primary float-right";
+                editButton.addEventListener("click", function() {
+                    const newText = prompt("Edit the task:", taskText);
+                    if (newText !== null) {
+                        taskItem.textContent = newText;
+                    }
+                });
+
+                taskItem.appendChild(editButton);
+                taskItem.appendChild(deleteButton);
+                taskList.appendChild(taskItem);
+            }
+
+            addTaskButton.addEventListener("click", function() {
+                const taskText = taskInput.value.trim();
+                if (taskText !== "") {
+                    createTask(taskText);
+                    taskInput.value = "";
+                }
+            });
+
+            taskInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    addTaskButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

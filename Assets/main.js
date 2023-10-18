@@ -81,6 +81,54 @@ function signup() {
     msg.style.color = "red";
   }
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.getElementById("login-form").addEventListener("submit", (event) => {
+  if (!validate1()) {
+    event.preventDefault();
+  }
+});
+function validate1() {
+  const email = document.getElementById("loginEmail");
+  const password = document.getElementById("loginPassword");
+  const emailval = email.value;
+  const passwordval = password.value;
+
+  if (emailval === "") {
+    valid = false;
+    setError1("Please enter an email.");
+  } else if (!isValidEmail(emailval)) {
+    valid = false;
+    setError1(email, "Please enter a valid email.");
+  } else {
+    setSuccess1(email);
+  }
+
+  if (passwordval === "") {
+    valid = false;
+    setError1(password, "Please enter a password.");
+  } else if (passwordval.length < 8) {
+    valid = false;
+    setError1(password, "Must be 8 Characters in  password.");
+  } else {
+    setSuccess1(password);
+  }
+  return valid;
+}
+
+function setError1(elementId, message) {
+  const element = elementId.parentElement;
+  const errorElement = element.querySelector(".error1");
+  errorElement.innerText = message;
+  element.classList.remove("success");
+  element.classList.add("error");
+}
+function setSuccess1(elementId, message) {
+  const element = elementId.parentElement;
+  const errorElement = element.querySelector(".error1");
+  errorElement.innerText = "";
+  element.classList.add("success");
+  element.classList.remove("error");
+}
 
 /////////////////////////////////////////////////////
 function login() {

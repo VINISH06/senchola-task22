@@ -15,7 +15,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="input-group mb-3">
                     <input type="text" id="taskInput" class="form-control" placeholder="Add a new task">
-                    <div class="input-group-append ">
+                    <div class="input-group-append">
                         <button id="addTask" class="btn btn-primary" type="button">Add</button>
                     </div>
                 </div>
@@ -34,7 +34,9 @@
             function createTask(taskText) {
                 const taskItem = document.createElement("li");
                 taskItem.className = "list-group-item";
-                taskItem.textContent = taskText;
+
+                const taskTextSpan = document.createElement("span");
+                taskTextSpan.textContent = taskText;
 
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
@@ -49,10 +51,11 @@
                 editButton.addEventListener("click", function () {
                     const newText = prompt("Edit the task:", taskText);
                     if (newText !== null) {
-                        taskItem.textContent = newText;
+                        taskTextSpan.textContent = newText;
                     }
                 });
 
+                taskItem.appendChild(taskTextSpan);
                 taskItem.appendChild(editButton);
                 taskItem.appendChild(deleteButton);
                 taskList.appendChild(taskItem);

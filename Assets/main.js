@@ -73,13 +73,20 @@ function signup() {
   if (Name1 && Email1 && Password1) {
     const user = { Name: Name1, Email: Email1, Password: Password1 };
     Users.push(user);
-
+    switchToLoginTab();
     msg.innerText = "Signup successful. You can now login.";
     msg.style.color = "white";
   } else {
     msg.innerText = "Signup Invalid Error";
     msg.style.color = "red";
   }
+}
+
+function switchToLoginTab() {
+  document.querySelector("#signup-tab").classList.remove("active");
+  document.querySelector("#login-tab").classList.add("active");
+  document.querySelector("#login").classList.add("active");
+  document.querySelector("#signup").classList.remove("active");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById("login-form").addEventListener("submit", (event) => {
